@@ -1,4 +1,5 @@
 Created using the MERN (MongoDB, Mongoose, Express, React and Node) stack.
+
 Next Features: Complete Food Journal Functionality, User Statistics and Login Page
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
