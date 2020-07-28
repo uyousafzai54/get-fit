@@ -12,11 +12,13 @@ export default class CreateExercise extends Component {
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeDate  = this.onChangeDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeCalories = this.onChangeCalories.bind(this);
         this.state = {
             username : '',
             description: '',
             duration: 0,
             date: new Date(),
+            calories: 0,
             users: []
         }
     }   
@@ -45,6 +47,12 @@ export default class CreateExercise extends Component {
             description: e.target.value
         });
     }
+    onChangeCalories(e)
+    {
+        this.setState({
+            calories: e.target.value
+        });
+    }
     onChangeDuration(e)
     {
         this.setState({
@@ -63,12 +71,13 @@ export default class CreateExercise extends Component {
             username : this.state.username,
             description: this.state.description,
             duration: this.state.duration,
-            date: this.state.date
+            date: this.state.date,
+            calories: this.state.calories
         }
         console.log(exercise)
         axios.post('http://localhost:5000/exercises/add', exercise)
         .then(res => console.log(res.data));
-        window.location ="/"
+            window.location ="/"
     }
     render()
     {
@@ -111,6 +120,15 @@ export default class CreateExercise extends Component {
                         onChange = {this.onChangeDuration}
                         />
                     </div>
+                    <div className = "form-group">
+                        <label>Calories: </label>
+                        <input type = "text"
+                        required
+                        className = "form-control"
+                        value = {this.state.calories}
+                        onChange = {this.onChangeCalories}
+                        />
+                    </div>
                     <div className="form-group">
             <label>Date: </label>
             <div>
@@ -119,6 +137,7 @@ export default class CreateExercise extends Component {
                 onChange={this.onChangeDate}
               />
             </div>
+          
           </div>
                     <div className = "form-group">
                         <input type = "submit" value = "Create Exercise Log" className = "btn btn-primary" />

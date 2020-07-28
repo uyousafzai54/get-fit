@@ -1,51 +1,51 @@
 const router = require('express').Router();
-let Exercise = require('../models/exercise.model');
+let Food = require('../models/food.model');
 
 router.route('/').get((req, res) => {
-    Exercise.find()
-    .then(exercises => res.json(exercises))
+    Food.find()
+    .then(foods => res.json(foods))
     .catch(err => res.status(400).json('Error: '+err));
 }); 
 router.route('/add').post((req, res) => {
     const username = req.body.username;
     const description = req.body.description;
-    const duration = Number(req.body.duration);
+    const meal = Number(req.body.meal);
     const date = Date.parse(req.body.date);
     const calories = Number(req.body.calories);
 
-    const newExercise = new Exercise({
+    const newFood = new Exercise({
         username, 
         description,
-        duration,
+        meal,
         date,
         calories
     });
-    newExercise.save()
-    .then(() => res.json('Exercise added!'))
+    newFood.save()
+    .then(() => res.json('Food added!'))
     .catch((err => res.status(400).json('Error: '+err)));
 }); 
 router.route('/:id').get((req, res)  => {
-    Exercise.findById(req.params.id)
-    .then(exercise => res.json(exercise))
+    Food.findById(req.params.id)
+    .then(food => res.json(food))
     .catch(err => res.status(400).json('Error: '+err));
 });
 
 router.route('/:id').delete((req, res) => {
-    Exercise.findByIdAndDelete(req.params.id)
-    .then(() => req.json('Exercise deleted'))
+    Food.findByIdAndDelete(req.params.id)
+    .then(() => req.json('Food deleted'))
     .catch(err => res.status(400).son('Error: '+err));
 });
 router.route('/update/:id').post((req, res) => {
-    Exercise.findById(req.params.id)
-    .then(exercise => {
-        exercise.username = req.body.username;
-        exercise.description = req.body.description;
-        exercise.duration = Number(req.body.duration);
-        exercise.date = Date.parse(req.body.date);
-        exercise.calories = Number(req.body.calories);
+    Food.findById(req.params.id)
+    .then(food => {
+        food.username = req.body.username;
+        food.description = req.body.description;
+        food.meal = Number(req.body.meal);
+        food.date = Date.parse(req.body.date);
+        food.calories = Number(req.body.calories);
 
-        exercise.save()
-        .then(() => res.json('Exercise updated!'))
+        food.save()
+        .then(() => res.json('Food updated!'))
         .catch(err => res.status(400).json('Error: '+err));
     })
     .catch(err => res.status(400).son('Error: '+err));
