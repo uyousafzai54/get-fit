@@ -2,8 +2,6 @@
 
 Created using the MERN (MongoDB, Mongoose, Express, React and Node) stack.
 
-Next Features: Complete Food Journal functionality, User Statistics, Login Page and Intermittent Fasting functionality. 
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
